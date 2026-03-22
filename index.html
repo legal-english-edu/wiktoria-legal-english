@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Legal English Edu – Course Dashboard</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;0,700;1,400&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #1a2744;
+    --navy-light: #243356;
+    --gold: #c8a455;
+    --gold-light: #e0c882;
+    --gold-muted: rgba(200, 164, 85, 0.15);
+    --cream: #faf8f4;
+    --cream-dark: #f0ece4;
+    --text-primary: #1a2744;
+    --text-secondary: #5a6478;
+    --text-light: #8a91a0;
+    --white: #ffffff;
+    --green: #2d8a6e;
+    --green-bg: rgba(45, 138, 110, 0.08);
+    --amber: #c48a1a;
+    --amber-bg: rgba(196, 138, 26, 0.08);
+    --border: rgba(26, 39, 68, 0.08);
+    --shadow-sm: 0 1px 3px rgba(26, 39, 68, 0.06);
+    --shadow-md: 0 4px 16px rgba(26, 39, 68, 0.08);
+    --shadow-lg: 0 8px 32px rgba(26, 39, 68, 0.10);
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--text-primary);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    padding: 2rem 1.5rem 2.5rem;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+  }
+
+  .header-inner {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .brand-mark {
+    width: 28px;
+    height: 28px;
+    background: var(--gold);
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: var(--navy);
+  }
+
+  .brand-name {
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 0.8rem;
+    color: var(--gold);
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .student-greeting {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.85rem;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 0.25rem;
+  }
+
+  .course-label {
+    font-size: 0.85rem;
+    color: var(--gold-light);
+    font-weight: 400;
+  }
+
+  /* TASK CARD */
+  .task-card {
+    max-width: 720px;
+    margin: -1.25rem auto 0;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 2;
+  }
+
+  .task-card-inner {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.75rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+  }
+
+  .task-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 1.25rem;
+  }
+
+  .task-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .task-deadline {
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--amber);
+    background: var(--amber-bg);
+    padding: 0.3rem 0.75rem;
+    border-radius: 20px;
+    white-space: nowrap;
+  }
+
+  .task-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .task-item {
+    display: flex;
+    gap: 0.85rem;
+    align-items: flex-start;
+    padding: 0.85rem 1rem;
+    background: var(--cream);
+    border-radius: 8px;
+    border: 1px solid var(--border);
+    transition: border-color 0.2s;
+  }
+
+  .task-item:hover {
+    border-color: rgba(200, 164, 85, 0.3);
+  }
+
+  .task-number {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--gold);
+    min-width: 1.5rem;
+    text-align: center;
+    line-height: 1.5;
+  }
+
+  .task-text {
+    font-size: 0.88rem;
+    color: var(--text-primary);
+    line-height: 1.55;
+  }
+
+  .task-text strong {
+    font-weight: 600;
+  }
+
+  .task-text em {
+    font-style: italic;
+    color: var(--text-secondary);
+  }
+
+  /* PROGRESS SECTION */
+  .section {
+    max-width: 720px;
+    margin: 2rem auto 0;
+    padding: 0 1.5rem;
+  }
+
+  .section:last-child {
+    padding-bottom: 3rem;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 1rem;
+  }
+
+  /* PROGRESS BAR */
+  .progress-overview {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    margin-bottom: 1.25rem;
+  }
+
+  .progress-stats {
+    display: flex;
+    gap: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .stat {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .stat-value {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.6rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  .stat-label {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .progress-bar-track {
+    height: 8px;
+    background: var(--cream-dark);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+
+  .progress-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--gold), var(--gold-light));
+    border-radius: 4px;
+    transition: width 0.8s ease;
+  }
+
+  /* UNIT LIST */
+  .unit-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .unit-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.9rem 1.15rem;
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: all 0.2s;
+  }
+
+  .unit-row:hover {
+    box-shadow: var(--shadow-md);
+  }
+
+  .unit-row.active {
+    border-color: var(--gold);
+    border-width: 1.5px;
+    background: linear-gradient(135deg, var(--white), rgba(200, 164, 85, 0.03));
+  }
+
+  .unit-row.completed {
+    background: var(--green-bg);
+    border-color: rgba(45, 138, 110, 0.15);
+  }
+
+  .unit-badge {
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  .unit-row.completed .unit-badge {
+    background: var(--green);
+    color: var(--white);
+  }
+
+  .unit-row.active .unit-badge {
+    background: var(--gold);
+    color: var(--navy);
+  }
+
+  .unit-row.upcoming .unit-badge {
+    background: var(--cream-dark);
+    color: var(--text-light);
+  }
+
+  .unit-info {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .unit-name {
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .unit-row.upcoming .unit-name {
+    color: var(--text-light);
+  }
+
+  .unit-sessions {
+    font-size: 0.75rem;
+    color: var(--text-light);
+    margin-top: 0.1rem;
+  }
+
+  .unit-status {
+    font-size: 0.72rem;
+    font-weight: 600;
+    padding: 0.25rem 0.65rem;
+    border-radius: 20px;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .status-completed {
+    color: var(--green);
+    background: var(--green-bg);
+  }
+
+  .status-active {
+    color: var(--gold);
+    background: var(--gold-muted);
+  }
+
+  .status-upcoming {
+    color: var(--text-light);
+    background: var(--cream-dark);
+  }
+
+  /* MILESTONES */
+  .milestones {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+
+  .milestone-row {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    padding: 0.85rem 1.15rem;
+    background: var(--white);
+    border-radius: 10px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .milestone-row.reached {
+    background: var(--green-bg);
+    border-color: rgba(45, 138, 110, 0.15);
+  }
+
+  .milestone-icon {
+    width: 2rem;
+    height: 2rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+
+  .milestone-row.reached .milestone-icon {
+    background: var(--green);
+    color: var(--white);
+  }
+
+  .milestone-row:not(.reached) .milestone-icon {
+    background: var(--cream-dark);
+    color: var(--text-light);
+  }
+
+  .milestone-text {
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    font-weight: 500;
+  }
+
+  .milestone-row:not(.reached) .milestone-text {
+    color: var(--text-light);
+  }
+
+  /* VOCAB COUNTER */
+  .vocab-card {
+    background: var(--white);
+    border-radius: 12px;
+    padding: 1.5rem 1.75rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .vocab-ring {
+    width: 64px;
+    height: 64px;
+    flex-shrink: 0;
+  }
+
+  .vocab-ring svg {
+    transform: rotate(-90deg);
+  }
+
+  .vocab-ring-bg {
+    fill: none;
+    stroke: var(--cream-dark);
+    stroke-width: 5;
+  }
+
+  .vocab-ring-fill {
+    fill: none;
+    stroke: var(--gold);
+    stroke-width: 5;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 1s ease;
+  }
+
+  .vocab-details {
+    flex: 1;
+  }
+
+  .vocab-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.2;
+  }
+
+  .vocab-sublabel {
+    font-size: 0.78rem;
+    color: var(--text-light);
+  }
+
+  /* FOOTER */
+  .footer {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 1.5rem 1.5rem 2.5rem;
+    text-align: center;
+  }
+
+  .footer-text {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    letter-spacing: 0.03em;
+  }
+
+  .footer-text a {
+    color: var(--gold);
+    text-decoration: none;
+  }
+
+  /* UPDATED LABEL */
+  .updated {
+    font-size: 0.72rem;
+    color: var(--text-light);
+    text-align: right;
+    margin-top: 0.5rem;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 480px) {
+    .header { padding: 1.5rem 1.25rem 2rem; }
+    .student-greeting { font-size: 1.5rem; }
+    .task-card, .section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .task-card-inner { padding: 1.25rem; }
+    .task-header { flex-direction: column; align-items: flex-start; gap: 0.5rem; }
+    .progress-stats { gap: 1.25rem; }
+    .stat-value { font-size: 1.35rem; }
+    .unit-row { padding: 0.75rem 0.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== HEADER ========== -->
+<header class="header">
+  <div class="header-inner">
+    <div class="brand">
+      <div class="brand-mark">L</div>
+      <span class="brand-name">Legal English Edu</span>
+    </div>
+    <h1 class="student-greeting">Welcome, Wiktoria</h1>
+    <p class="course-label">General Legal English with TOLES Elements &middot; Foundation Level</p>
+  </div>
+</header>
+
+<!-- ========== WHAT TO DO NEXT ========== -->
+<div class="task-card">
+  <div class="task-card-inner">
+    <div class="task-header">
+      <h2 class="task-title">What to do next</h2>
+      <span class="task-deadline">Before 24 March</span>
+    </div>
+    <ol class="task-list">
+      <li class="task-item">
+        <span class="task-number">1</span>
+        <span class="task-text">Work through the <strong>Pre-Lesson Presentation for Unit 1A</strong> – you will find it in the shared Google Drive folder.</span>
+      </li>
+      <li class="task-item">
+        <span class="task-number">2</span>
+        <span class="task-text">Read <strong>Working in Law</strong> and <strong>Making a Claim in the Civil Court</strong> in the coursebook and complete the exercises in those sections.</span>
+      </li>
+      <li class="task-item">
+        <span class="task-number">3</span>
+        <span class="task-text">Review your <strong>Quizlet flashcards</strong> regularly – aim for at least one session per day.</span>
+      </li>
+    </ol>
+  </div>
+</div>
+
+<!-- ========== PROGRESS ========== -->
+<div class="section">
+  <h2 class="section-title">Foundation Progress</h2>
+
+  <div class="progress-overview">
+    <div class="progress-stats">
+      <div class="stat">
+        <span class="stat-value">1 / 10</span>
+        <span class="stat-label">Units started</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">0 / 10</span>
+        <span class="stat-label">Units completed</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">2 / ~51</span>
+        <span class="stat-label">Sessions</span>
+      </div>
+    </div>
+    <div class="progress-bar-track">
+      <div class="progress-bar-fill" style="width: 5%"></div>
+    </div>
+  </div>
+
+  <div class="unit-list">
+    <div class="unit-row active">
+      <div class="unit-badge">1</div>
+      <div class="unit-info">
+        <div class="unit-name">The Legal Profession</div>
+        <div class="unit-sessions">Session A in progress</div>
+      </div>
+      <span class="unit-status status-active">In progress</span>
+    </div>
+    <div class="unit-row upcoming">
+      <div class="unit-badge">2</div>
+      <div class="unit-info">
+        <div class="unit-name">The Language of Banking</div>
+        <div class="unit-sessions">Sessions A + B</div>
+      </div>
+      <span class="unit-status status-upcoming">Upcoming</span>
+    </div>
+    <div class="unit-row upcoming">
+      <div class="unit-badge">3</div>
+      <div class="unit-info">
+        <div class="unit-name">The Language of Contract Law</div>
+        <div class="unit-sessions">Sessions A + B</div>
+      </div>
+      <span class="unit-status status-upcoming">Upcoming</span>
+    </div>
+    <div class="unit-row upcoming">
+      <div class="unit-badge">4</div>
+      <div class="unit-info">
+        <div class="unit-name">The Language of Employment Law</div>
+        <div class="unit-sessions">Sessions A + B</div>
+      </div>
+      <span class="unit-status status-upcoming">Upcoming</span>
+    </div>
+    <div class="unit-row upcoming">
+      <div class="unit-badge">5</div>
+      <div class="unit-info">
+        <div class="unit-name">The Language of the Law of Tort</div>
+        <div class="unit-sessions">Sessions A + B</div>
+      </div>
+      <span class="unit-status status-upcoming">Upcoming</span>
+    </div>
+    <div class="unit-row upcoming">
+      <div class="unit-badge">6</div>
+      <div class="unit-info">
+        <div class="unit-name">Understanding Contracts (1)</div>
+        <div class="unit-sessions">Sessions A + B</div>
+      </div>
+      <span class="unit-status status-upcoming">Upcoming</span>
+    </div>
+    <div class="unit-row upcoming">
+      <div class="unit-badge">7</div>
+      <div class="unit-info">
+        <div class="unit-name">The Language of Business Law</div>
+        <div class="unit-sessions">Sessions A + B</div>
+      </div>
+      <span class="unit-status status-upcoming">Upcoming</span>
+    </div>
+    <div class="unit-row upcoming">
+      <div class="unit-badge">8</div>
+      <div class="unit-info">
+        <div class="unit-name">Modern Letter Writing</div>
+        <div class="unit-sessions">Sessions A + B</div>
+      </div>
+      <span class="unit-status status-upcoming">Upcoming</span>
+    </div>
+    <div class="unit-row upcoming">
+      <div class="unit-badge">9</div>
+      <div class="unit-info">
+        <div class="unit-name">The Language of Company Law</div>
+        <div class="unit-sessions">Sessions A + B</div>
+      </div>
+      <span class="unit-status status-upcoming">Upcoming</span>
+    </div>
+    <div class="unit-row upcoming">
+      <div class="unit-badge">10</div>
+      <div class="unit-info">
+        <div class="unit-name">Understanding Contracts (2)</div>
+        <div class="unit-sessions">Sessions A + B</div>
+      </div>
+      <span class="unit-status status-upcoming">Upcoming</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== VOCABULARY ========== -->
+<div class="section">
+  <h2 class="section-title">Vocabulary</h2>
+  <div class="vocab-card">
+    <div class="vocab-ring">
+      <svg viewBox="0 0 64 64" width="64" height="64">
+        <circle class="vocab-ring-bg" cx="32" cy="32" r="27"/>
+        <circle class="vocab-ring-fill" cx="32" cy="32" r="27"
+          stroke-dasharray="169.65"
+          stroke-dashoffset="152.68"/>
+      </svg>
+    </div>
+    <div class="vocab-details">
+      <div class="vocab-count">~25 terms</div>
+      <div class="vocab-sublabel">Unit 1A – The Legal Profession</div>
+    </div>
+  </div>
+</div>
+
+<!-- ========== MILESTONES ========== -->
+<div class="section">
+  <h2 class="section-title">Programme Milestones</h2>
+  <div class="milestones">
+    <div class="milestone-row reached">
+      <div class="milestone-icon">&#10003;</div>
+      <span class="milestone-text">Placement test completed</span>
+    </div>
+    <div class="milestone-row reached">
+      <div class="milestone-icon">&#10003;</div>
+      <span class="milestone-text">TOLES Orientation module completed</span>
+    </div>
+    <div class="milestone-row reached">
+      <div class="milestone-icon">&#10003;</div>
+      <span class="milestone-text">Learning agreement signed</span>
+    </div>
+    <div class="milestone-row">
+      <div class="milestone-icon">&#9702;</div>
+      <span class="milestone-text">Mid-programme review (after Unit 5)</span>
+    </div>
+    <div class="milestone-row">
+      <div class="milestone-icon">&#9702;</div>
+      <span class="milestone-text">Foundation revision sessions (after Unit 10)</span>
+    </div>
+    <div class="milestone-row">
+      <div class="milestone-icon">&#9702;</div>
+      <span class="milestone-text">Mock exam + debrief</span>
+    </div>
+    <div class="milestone-row">
+      <div class="milestone-icon">&#9702;</div>
+      <span class="milestone-text">Exam readiness sign-off</span>
+    </div>
+  </div>
+</div>
+
+<!-- ========== FOOTER ========== -->
+<footer class="footer">
+  <p class="updated">Last updated: 22 March 2026</p>
+  <p class="footer-text" style="margin-top: 0.5rem;"><a href="https://legalenglishedu.com">Legal English Edu</a> &middot; TOLES Preparation &middot; Bartosz</p>
+</footer>
+
+</body>
+</html>
